@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3228f9a7-1608-48df-a446-250e8aa72cf2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhr-landing-test-pipeline" beforeDir="false" afterPath="$PROJECT_DIR$/dhr-landing-test-pipeline" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhr-landing-test-pipeline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dhr-landing-test-pipeline/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhr-landing-test-pipeline/dhr-landing-test-pipeline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhr-landing-test-pipeline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BaseStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseStep.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ContactPageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DhrLandingAllModulesSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SentinalAllModulesSuite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DhrLandingAllPageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExplorePageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/HomePageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ModulesPageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ResourcesPageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/log/main.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/log/main.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +43,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/d1-tech-test-automation-projects/dhr-selenium.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/d1-tech-test-automation-projects/dhr-landing-selenium-test.git&quot;,
     &quot;accountId&quot;: &quot;1d4e1655-a72e-47a6-bc0f-3d149edbc1b6&quot;
   }
 }</component>
@@ -46,34 +55,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.DhrAllPageTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DhrLandingAllPageTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OtherTestClass.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lenovo/IdeaProjects/dhr-selenium&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Burhan Numar/IdeaProjects/DHR-Selenium/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.BugsPageTest.executor": "Run",
+    "JUnit.DashboardPageTest.executor": "Run",
+    "JUnit.DeploymentsPageTest.executor": "Run",
+    "JUnit.DhrAllPageTest.executor": "Run",
+    "JUnit.DhrLandingAllPageTest.executor": "Run",
+    "JUnit.LogoutTest.executor": "Run",
+    "JUnit.OtherTestClass.executor": "Run",
+    "JUnit.ProjectPageTest.executor": "Run",
+    "JUnit.ReportsPageTest.executor": "Run",
+    "JUnit.RequirementsPageTest.executor": "Run",
+    "JUnit.SettingsPageTest.executor": "Run",
+    "JUnit.SprintPageTest.executor": "Run",
+    "JUnit.TestCasesPageTest.executor": "Run",
+    "JUnit.WorkflowPageTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Lenovo/IdeaProjects/dhr-landing-selenium-test",
+    "onboarding.tips.debug.path": "C:/Users/Burhan Numar/IdeaProjects/DHR-Selenium/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
     ]
   }
-}</component>
-  <component name="RunManager" selected="JUnit.DhrLandingAllPageTest">
+}]]></component>
+  <component name="RunManager" selected="JUnit.WorkflowPageTest">
+    <configuration name="DeploymentsPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DHR-Selenium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DeploymentsPageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DhrAllPageTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="DHR-Selenium" />
       <option name="PACKAGE_NAME" value="" />
@@ -84,10 +113,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DhrLandingAllPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogoutTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="DHR-Selenium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="DhrLandingAllPageTest" />
+      <option name="MAIN_CLASS_NAME" value="LogoutTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReportsPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DHR-Selenium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ReportsPageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SettingsPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DHR-Selenium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SettingsPageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorkflowPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DHR-Selenium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="WorkflowPageTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -95,7 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DhrLandingAllPageTest" />
+        <item itemvalue="JUnit.WorkflowPageTest" />
+        <item itemvalue="JUnit.SettingsPageTest" />
+        <item itemvalue="JUnit.LogoutTest" />
+        <item itemvalue="JUnit.ReportsPageTest" />
+        <item itemvalue="JUnit.DeploymentsPageTest" />
       </list>
     </recent_temporary>
   </component>

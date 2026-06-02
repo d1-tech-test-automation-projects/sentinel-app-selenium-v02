@@ -12,15 +12,15 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 
     <!-- Dependency versions -->
-    <selenium.version>4.28.0</selenium.version>
+    <selenium.version>4.43.0</selenium.version>
     <cucumber.version>7.20.1</cucumber.version>
     <junit.version>5.11.3</junit.version>
     <junit.platform.version>1.11.3</junit.platform.version>
     <log4j.version>2.24.1</log4j.version>
-    <webdrivermanager.version>5.9.2</webdrivermanager.version>
     <apache.commons.version>2.17.0</apache.commons.version>
     <apache.commons.lang3.version>3.17.0</apache.commons.lang3.version>
     <maven.surefire.version>3.5.1</maven.surefire.version>
@@ -39,6 +39,7 @@
     <skipTests>false</skipTests>
     <skipITs>false</skipITs>
     <cucumber.tags></cucumber.tags>
+    <headless>false</headless>
 </properties>
 
 <dependencies>
@@ -47,13 +48,6 @@
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
     <version>${selenium.version}</version>
-</dependency>
-
-<!-- WebDriverManager for automatic driver management -->
-<dependency>
-    <groupId>io.github.bonigarcia</groupId>
-    <artifactId>webdrivermanager</artifactId>
-    <version>${webdrivermanager.version}</version>
 </dependency>
 
 <!-- Cucumber BDD Framework -->
@@ -174,83 +168,97 @@
     <scope>test</scope>
 </dependency>
 
-<!-- Selenium DevTools - REMOVED problematic dependency -->
-<!-- The selenium-devtools-v130 with version 4.0.0-rc-1 is incompatible with Selenium 4.27.0 -->
-<!-- DevTools support is already included in selenium-java 4.27.0 -->
 </dependencies>
 
-<build>
-<plugins>
-    <!-- Maven Compiler Plugin -->
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven.compiler.version}</version>
-        <configuration>
-            <source>${maven.compiler.source}</source>
-            <target>${maven.compiler.target}</target>
-            <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
-    </plugin>
 
-    <!-- Maven Surefire Plugin for unit tests -->
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven.surefire.version}</version>
-        <configuration>
-            <skipTests>${skipTests}</skipTests>
-            <includes>
-                <include>**/*Test.java</include>
-                <include>**/*Tests.java</include>
-            </includes>
-            <systemPropertyVariables>
-                <cucumber.tags>${cucumber.tags}</cucumber.tags>
-            </systemPropertyVariables>
-        </configuration>
-    </plugin>
+    <!-- Update Build -->
+    <build>
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
 
-    <!-- Maven Failsafe Plugin for integration tests -->
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>${maven.failsafe.version}</version>
-        <configuration>
-            <skipITs>${skipITs}</skipITs>
-            <includes>
-                <include>**/*IT.java</include>
-                <include>**/CucumberTestRunner.java</include>
-            </includes>
-            <systemPropertyVariables>
-                <cucumber.tags>${cucumber.tags}</cucumber.tags>
-            </systemPropertyVariables>
-        </configuration>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>integration-test</goal>
-                    <goal>verify</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
+            <!-- Maven Surefire Plugin for unit tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <skipTests>${skipTests}</skipTests>
+                    <!-- ===== YENİ EKLENEN ===== -->
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <encoding>UTF-8</encoding>
+                    <!-- ======================== -->
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
+                    </includes>
+                    <systemPropertyVariables>
+                        <cucumber.tags>${cucumber.tags}</cucumber.tags>
+                        <!-- ===== YENİ EKLENEN ===== -->
+                        <file.encoding>UTF-8</file.encoding>
+                        <headless>${headless}</headless>
+                        <!-- ======================== -->
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
 
-    <!-- Maven Site Plugin for documentation -->
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>${maven.site.version}</version>
-    </plugin>
+            <!-- Maven Failsafe Plugin for integration tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <configuration>
+                    <skipITs>${skipITs}</skipITs>
+                    <!-- ===== YENİ EKLENEN ===== -->
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <encoding>UTF-8</encoding>
+                    <!-- ======================== -->
+                    <includes>
+                        <include>**/*IT.java</include>
+                        <include>**/CucumberTestRunner.java</include>
+                    </includes>
+                    <systemPropertyVariables>
+                        <cucumber.tags>${cucumber.tags}</cucumber.tags>
+                        <!-- ===== YENİ EKLENEN ===== -->
+                        <file.encoding>UTF-8</file.encoding>
+                        <headless>${headless}</headless>
+                        <!-- ======================== -->
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-    <!-- Maven Project Info Reports Plugin -->
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>${maven.project.info.version}</version>
-    </plugin>
-</plugins>
-</build>
+            <!-- Maven Site Plugin for documentation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven.site.version}</version>
+            </plugin>
 
+            <!-- Maven Project Info Reports Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven.project.info.version}</version>
+            </plugin>
+        </plugins>
+    </build>
         <!-- Reporting -->
 <reporting>
 <plugins>

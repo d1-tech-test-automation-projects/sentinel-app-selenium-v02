@@ -21,7 +21,7 @@ public class BaseStep extends LogTest {
 
         public static WebDriver driver;
         private static WebDriverWait wait;
-        private static final String DEFAULT_URL = "https://dhr.d1-tech.com/";
+        private static final String DEFAULT_URL = "https://sentineltest.d1-tech.com/";
         private static final int DEFAULT_TIMEOUT = 10;
 
         /**
@@ -38,39 +38,60 @@ public class BaseStep extends LogTest {
         /**
          * Chrome driver'ı başlatır ve konfigüre eder
          */
-        public static void openChromeDriver() {
-            try {
-                stepInfo("Initializing Chrome WebDriver");
 
-                // Chrome options
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--disable-notifications");
-                options.addArguments("--disable-popup-blocking");
-                options.addArguments("--ignore-certificate-errors");
-                options.addArguments("--ignore-ssl-errors");
-                options.addArguments("--allow-running-insecure-content");
 
-                // Driver oluştur
-                driver = new ChromeDriver(options);
-                wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT));
+    /* güncel openchromedriver method */
 
-                // Temel konfigürasyonlar
-                driver.manage().window().maximize();
-                driver.manage().deleteAllCookies();
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT));
+     public static void openChromeDriver() {
+     try {
+     stepInfo("Initializing Chrome WebDriver");
 
-                browserAction("Chrome browser initialized", "Chrome");
+     // Chrome options
+     ChromeOptions options = new ChromeOptions();
 
-                // Default URL'e git
-                navigateToUrl(DEFAULT_URL);
+     // Jenkins / CI ortamı için headless ve viewport ayarları
+     String headlessMode = System.getProperty("headless", "false");
+     if ("true".equalsIgnoreCase(headlessMode)) {
+     options.addArguments("--headless=new");
+     options.addArguments("--disable-gpu");
+     options.addArguments("--no-sandbox");
+     options.addArguments("--disable-dev-shm-usage");
+     }
+     options.addArguments("--window-size=1920,1080");
 
-            } catch (Exception e) {
-                logException("Opening Chrome driver", e);
-                throw new RuntimeException("Failed to initialize Chrome driver", e);
-            }
-        }
+     // Mevcut argümanlar
+     options.addArguments("--disable-notifications");
+     options.addArguments("--disable-popup-blocking");
+     options.addArguments("--ignore-certificate-errors");
+     options.addArguments("--ignore-ssl-errors");
+     options.addArguments("--allow-running-insecure-content");
 
-        /**
+     // Driver oluştur
+     driver = new ChromeDriver(options);
+     wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT));
+
+     // Temel konfigürasyonlar
+     // Headless modda maximize() çalışmaz; sadece GUI modda devreye alıyoruz
+     if (!"true".equalsIgnoreCase(headlessMode)) {
+     driver.manage().window().maximize();
+     }
+     driver.manage().deleteAllCookies();
+     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_TIMEOUT));
+
+     browserAction("Chrome browser initialized", "Chrome");
+
+     // Default URL'e git
+     navigateToUrl(DEFAULT_URL);
+
+     } catch (Exception e) {
+     logException("Opening Chrome driver", e);
+     throw new RuntimeException("Failed to initialize Chrome driver", e);
+     }
+     }
+
+
+
+    /**
          * Driver'ı kapatır
          */
         public static void driverQuit() {
@@ -588,6 +609,28 @@ public class BaseStep extends LogTest {
             } catch (Exception e) {
                 logException("Finding multiple elements", e);
                 return null;
+            }
+        }
+
+        /**
+         * JavaScript ile element'e tıklar.
+         * Normal click() çalışmadığında (element başka bir element tarafından
+         * kapatıldığında, görünür alanın dışında olduğunda vb.) kullanılır.
+         */
+        public static void jsClickElement(WebElement element, String elementDescription) {
+            try {
+                if (element == null) {
+                    throw new IllegalArgumentException("Element cannot be null");
+                }
+                actionInfo("JS Click", elementDescription);
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+                js.executeScript("arguments[0].click();", element);
+                stepInfo("Element clicked successfully via JS: " + elementDescription);
+            } catch (Exception e) {
+                logException("JS Click operation", e);
+                TakeScreenShot.takeFailureScreenshot("jsClickElement", driver, "Failed to JS click: " + elementDescription);
+                throw new RuntimeException("Failed to JS click element: " + elementDescription, e);
             }
         }
 

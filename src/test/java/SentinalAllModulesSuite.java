@@ -4,7 +4,7 @@ import org.junit.platform.suite.api.Suite;
 import org.junit.platform.suite.api.SuiteDisplayName;
 
 /**
- * DHR projesinin tüm modül testlerini sıralı şekilde çalıştıran Suite sınıfı.
+ * Sentinal projesinin tüm modül testlerini sıralı şekilde çalıştıran Suite sınıfı.
  *
  * Çalıştırma:
  *   mvn test -Dtest=DhrAllModulesSuite
@@ -19,15 +19,25 @@ import org.junit.platform.suite.api.SuiteDisplayName;
  *   - Her sınıfın içindeki @Test metodları @Order annotation'ına göre sıralı çalışır
  */
 @Suite
-@SuiteDisplayName("DHR Landing All Pages Test Suite")
+@SuiteDisplayName("Sentinal All Pages Test Suite")
 @SelectClasses({
-        DhrLandingAllPageTest.class,
+       DashboardPageTest.class,
+        ProjectPageTest.class,
+        RequirementsPageTest.class,
+        TestCasesPageTest.class,
+        BugsPageTest.class,
+        SprintPageTest.class,
+        DeploymentsPageTest.class,
+        ReportsPageTest.class,
+        WorkflowPageTest.class,
+        SettingsPageTest.class,
+        LogoutTest.class
 
 })
 @ConfigurationParameter(
         key = "junit.jupiter.testclass.order.default",
         value = "org.junit.jupiter.api.ClassOrderer$OrderAnnotation"
 )
-public class DhrLandingAllModulesSuite {
+public class SentinalAllModulesSuite {
     // Suite sınıfı boş kalır - sadece annotation'lar konfigürasyonu sağlar
 }
